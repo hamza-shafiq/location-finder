@@ -14,15 +14,17 @@ if getattr(sys, 'frozen', False):
 else:
     base_path = os.path.abspath(".")
 
+
 class MyApp(QWidget):
     def __init__(self):
         super().__init__()
         style_sheet = 'background-color: #232323; color: white;'
         self.setStyleSheet(style_sheet)
         self.setWindowTitle("My App")
-        self.setGeometry(100, 100, 1200, 800)  # Set your preferred window size
+        self.setGeometry(100, 100, 1500, 850)  # Set your preferred window size
         self.setWindowFlag(Qt.WindowMaximizeButtonHint, False)
         self.access_token = os.environ.get("ACCESS_TOKEN")
+        # self.base_route = "_internal/assets/"
         self.local_messages = {
             "alert_message": "SOME URGENT MESSAGE HERE",
             "info_message": "Lorem ipsum dolor sit amet",
@@ -97,8 +99,8 @@ class MyApp(QWidget):
         banner_image_path = os.path.join(base_path, "assets", "banner.png")  # Replace with actual path
         banner_label = QLabel()
         banner_pixmap = QPixmap(banner_image_path)
-        banner_pixmap = banner_pixmap.scaled(800, 100, Qt.KeepAspectRatio)
-        banner_label.setFixedHeight(100)
+        banner_pixmap = banner_pixmap.scaled(800, 150, Qt.KeepAspectRatio)
+        banner_label.setFixedHeight(150)
         banner_label.setPixmap(banner_pixmap)
         banner_label.setScaledContents(True)
 
@@ -132,7 +134,7 @@ class MyApp(QWidget):
         alert_layout.addWidget(text_label)
         alert_layout.addWidget(right_image)
         alert_label.setLayout(alert_layout)
-
+        alert_label.setFixedHeight(45)
         info_label = QLabel(self.local_messages["info_message"])
         info_label.setStyleSheet('font-size: 18px; font-weight: 400; background-color: black; color: white;')
         info_label.setAlignment(Qt.AlignCenter)
@@ -150,7 +152,7 @@ class MyApp(QWidget):
         lorem_ipsum_text = self.local_messages["left_container_900_words"]
 
         lorem_label = QLabel(lorem_ipsum_text, left_widget)
-        lorem_label.setFixedWidth(590)
+        lorem_label.setFixedWidth(670)
         lorem_label.setStyleSheet(
             "font-size: 18px; padding: 10px 0px 0px 10px; font-weight: 700; background-color: black;")
         lorem_label.setWordWrap(True)
@@ -162,7 +164,7 @@ class MyApp(QWidget):
 
         ip_info_scroll_area = QScrollArea(self)
         ip_info_widget = QWidget(self)
-        ip_info_widget.setFixedWidth(590)
+        ip_info_widget.setFixedWidth(670)
         ip_info_widget.setStyleSheet("font-size: 18px; padding: 10px 0px 0px 10px; font-weight: 700; background-color: black;")
         ip_info_layout = QVBoxLayout(ip_info_widget)
         ip_info_layout.setContentsMargins(0, 0, 0, 0)
@@ -245,8 +247,8 @@ class MyApp(QWidget):
         address_text.append(f"{bitcoin_fee}")
 
         graphic_representation = QLabel(right_widget)
-        bitcoin_method_image = os.path.join(base_path, "assets", "bitcoinpaymentmethod.png")
-        pixmap = QPixmap(bitcoin_method_image).scaled(200, 350)
+        bitcoin_payment = os.path.join(base_path, "assets", "bitcoinpaymentmethod.png")
+        pixmap = QPixmap(bitcoin_payment).scaled(200, 350)
         graphic_representation.setPixmap(pixmap)
         graphic_representation.setStyleSheet("margin-top: 9px;")
 
@@ -299,9 +301,9 @@ class MyApp(QWidget):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = MyApp()
-    window.setMaximumWidth(1200)
-    window.setMinimumWidth(1200)
-    window.setMaximumHeight(800)
-    window.setMinimumHeight(800)
+    window.setMaximumWidth(1500)
+    window.setMinimumWidth(1500)
+    window.setMaximumHeight(850)
+    window.setMinimumHeight(850)
     window.show()
     sys.exit(app.exec_())
