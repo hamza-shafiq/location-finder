@@ -20,7 +20,7 @@ class MyApp(QWidget):
         style_sheet = 'background-color: #232323; color: white;'
         self.setStyleSheet(style_sheet)
         self.setWindowTitle("My App")
-        self.setGeometry(100, 100, 1200, 700)  # Set your preferred window size
+        self.setGeometry(100, 100, 1200, 800)  # Set your preferred window size
         self.setWindowFlag(Qt.WindowMaximizeButtonHint, False)
         self.access_token = os.environ.get("ACCESS_TOKEN")
         self.local_messages = {
@@ -125,7 +125,7 @@ class MyApp(QWidget):
         right_image.setAlignment(Qt.AlignCenter)
 
         text_label = QLabel(f"{self.local_messages['alert_message']}")
-        text_label.setStyleSheet('font-size: 20px; font-weight: 700; color: white;')
+        text_label.setStyleSheet('font-size: 20px; font-weight: 700; color: white; margin: 0px 0px 0px 70px;')
 
         alert_layout = QHBoxLayout()
         alert_layout.addWidget(left_image)
@@ -246,7 +246,7 @@ class MyApp(QWidget):
 
         graphic_representation = QLabel(right_widget)
         bitcoin_method_image = os.path.join(base_path, "assets", "bitcoinpaymentmethod.png")
-        pixmap = QPixmap(bitcoin_method_image).scaled(150, 300)
+        pixmap = QPixmap(bitcoin_method_image).scaled(200, 350)
         graphic_representation.setPixmap(pixmap)
         graphic_representation.setStyleSheet("margin-top: 9px;")
 
@@ -301,7 +301,7 @@ if __name__ == "__main__":
     window = MyApp()
     window.setMaximumWidth(1200)
     window.setMinimumWidth(1200)
-    window.setMaximumHeight(700)
-    window.setMinimumHeight(700)
+    window.setMaximumHeight(800)
+    window.setMinimumHeight(800)
     window.show()
     sys.exit(app.exec_())
