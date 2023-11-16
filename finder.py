@@ -9,6 +9,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+if getattr(sys, 'frozen', False):
+    base_path = sys._MEIPASS
+else:
+    base_path = os.path.abspath(".")
 
 class MyApp(QWidget):
     def __init__(self):
@@ -19,7 +23,6 @@ class MyApp(QWidget):
         self.setGeometry(100, 100, 1200, 700)  # Set your preferred window size
         self.setWindowFlag(Qt.WindowMaximizeButtonHint, False)
         self.access_token = os.environ.get("ACCESS_TOKEN")
-        self.base_route = "../assets/"
         self.local_messages = {
             "alert_message": "SOME URGENT MESSAGE HERE",
             "info_message": "Lorem ipsum dolor sit amet",
@@ -91,7 +94,7 @@ class MyApp(QWidget):
 
     def init_ui(self):
         # Top Placeholder Banner Image
-        banner_image_path = f"{self.base_route}banner.png"  # Replace with actual path
+        banner_image_path = os.path.join(base_path, "assets", "banner.png")  # Replace with actual path
         banner_label = QLabel()
         banner_pixmap = QPixmap(banner_image_path)
         banner_pixmap = banner_pixmap.scaled(800, 100, Qt.KeepAspectRatio)
@@ -110,7 +113,7 @@ class MyApp(QWidget):
 
         image_width = 17
         image_height = 17
-        left_image_path = f"{self.base_route}alert.png"
+        left_image_path = os.path.join(base_path, "assets", "alert.png")
         left_image_path = self.apply_white_filter(left_image_path, (128, 128, 128) )
 
         left_pixmap = QPixmap(left_image_path).scaled(image_width, image_height)
@@ -185,10 +188,10 @@ class MyApp(QWidget):
         goods_layout.setContentsMargins(0, 0, 0, 0)
         goods_image_layout = QGridLayout()
         image_paths = [
-            f"{self.base_route}bitcoinacceptedcompony.png",
-            f"{self.base_route}bitcoinacceptedcompony.png",
-            f"{self.base_route}bitcoinacceptedcompony.png",
-            f"{self.base_route}bitcoinacceptedcompony.png",
+            os.path.join(base_path, "assets", "bitcoinacceptedcompony.png"),
+            os.path.join(base_path, "assets", "bitcoinacceptedcompony.png"),
+            os.path.join(base_path, "assets", "bitcoinacceptedcompony.png"),
+            os.path.join(base_path, "assets", "bitcoinacceptedcompony.png"),
         ]
 
         row = 0
@@ -228,7 +231,7 @@ class MyApp(QWidget):
         cursor = QTextCursor(address_text.document())
         cursor.movePosition(QTextCursor.End)
 
-        image_path = f"{self.base_route}bitcoin.png"
+        image_path = os.path.join(base_path, "assets", "bitcoin.png")
         pixmap = QPixmap(image_path).scaled(50, 50, Qt.KeepAspectRatio)
         image = pixmap.toImage()
         cursor.insertImage(image)
@@ -242,7 +245,8 @@ class MyApp(QWidget):
         address_text.append(f"{bitcoin_fee}")
 
         graphic_representation = QLabel(right_widget)
-        pixmap = QPixmap(f"{self.base_route}bitcoinpaymentmethod.png").scaled(150, 300)
+        bitcoin_method_image = os.path.join(base_path, "assets", "bitcoinpaymentmethod.png")
+        pixmap = QPixmap(bitcoin_method_image).scaled(150, 300)
         graphic_representation.setPixmap(pixmap)
         graphic_representation.setStyleSheet("margin-top: 9px;")
 
@@ -256,10 +260,10 @@ class MyApp(QWidget):
 
         image_grid_layout = QGridLayout()
         image_paths = [
-            f"{self.base_route}bitcoinacceptedcompony.png",
-            f"{self.base_route}bitcoinacceptedcompony.png",
-            f"{self.base_route}bitcoinacceptedcompony.png",
-            f"{self.base_route}bitcoinacceptedcompony.png",
+            os.path.join(base_path, "assets", "bitcoinacceptedcompony.png"),
+            os.path.join(base_path, "assets", "bitcoinacceptedcompony.png"),
+            os.path.join(base_path, "assets", "bitcoinacceptedcompony.png"),
+            os.path.join(base_path, "assets", "bitcoinacceptedcompony.png"),
         ]
 
         row = 0
