@@ -8,15 +8,15 @@ Activate Virtual Environment
 ```bash
 $ source venv/bin/activate 
 ```
-Run
-```bash
-$ python finder.py 
-```
-Install Requirement
+Install Requirements
 ```bash
 $ pip install -r requirements.txt 
 ```
-For making exe file run this command where python script placed
+Run application
+```bash
+$ python finder.py 
+```
+For making executable file, run this command where python script is located
 ```bash
 $ pyinstaller --add-data="assets/*;assets/" --noconsole --onefile finder.py 
 ```
